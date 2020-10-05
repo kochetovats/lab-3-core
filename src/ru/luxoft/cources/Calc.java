@@ -3,43 +3,41 @@ package ru.luxoft.cources;
 import java.util.Scanner;
 
 public class Calc {
-int firstNumber;
-int secondNumber;
-String operation="";
-double result;
+    int firstNumber;
+    int secondNumber;
+    String operation = "";
+    double result;
 
-Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
 
-    public Calc()
-    {
+    public Calc() {
         this.firstNumber = 0;
         this.secondNumber = 0;
         this.result = 0;
-        }
+    }
 
-    public  void getInput ()
-    {
+    //метод ничего не возвращает, поэтому не может называться get...
+    public void getInput() {
         firstNumber = 0;
         secondNumber = 0;
         System.out.println("Please enter your example (format: a + b) or type 'q' for quit. \nSupported operations: + - / * !");
-        if (scanner.hasNextInt())  {
+        if (scanner.hasNextInt()) {
             firstNumber = scanner.nextInt();
-        }  else
-            if ("q".equals(scanner.next())) { // when 'q' was entered first for quit
-                System.out.println("\nYou typed 'q' for quit.");
-                operation="q";
-                return;
-            }
+        } else if ("q".equals(scanner.next())) { // when 'q' was entered first for quit
+            System.out.println("\nYou typed 'q' for quit.");
+            operation = "q";
+            return;
+        }
         operation = scanner.next();
-            if (!"!".equals(operation)){ // if not factorial then expect secondNumber
-                if (scanner.hasNextInt()) {
-                    secondNumber = scanner.nextInt();
-                }
+        if (!"!".equals(operation)) { // if not factorial then expect secondNumber
+            if (scanner.hasNextInt()) {
+                secondNumber = scanner.nextInt();
             }
+        }
     }
 
-    public void calculate (int num1, int num2, String op) {
-       switch (operation) {
+    public void calculate(int num1, int num2, String op) {
+        switch (operation) {
             case "+":
                 result = plus(firstNumber, secondNumber);
                 System.out.println("Result: " + result + "\n\n");
@@ -54,8 +52,8 @@ Scanner scanner = new Scanner(System.in);
                 break;
             case "/":
                 if (secondNumber != 0) {
-                result = del(firstNumber, secondNumber);
-                System.out.println("Result: " + result + "\n\n");
+                    result = del(firstNumber, secondNumber);
+                    System.out.println("Result: " + result + "\n\n");
                 } else System.out.println("Division by zero is not allowed!");
                 break;
             case "!":
